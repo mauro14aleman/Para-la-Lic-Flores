@@ -55,7 +55,7 @@
 </head>
 <body>
     <audio id="bg-music" loop>
-        <source src="https://www.mboxdrive.com/rewrite-the-stars.mp3" type="audio/mpeg">
+        <source src="audio/rewrite-the-stars.mp3" type="audio/mpeg">
     </audio>
     <div class="card" onclick="showMessage()">
         💜 Toca para abrir 💜

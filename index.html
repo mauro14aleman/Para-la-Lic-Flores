@@ -3,85 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti 💜</title>
+    <title>Tarjeta Interactiva</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #6a0dad, #8e44ad, #3498db);
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-        .card {
-            width: 300px;
-            height: 200px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to bottom right, #4F92C3, #F9D423); /* Azules y amarillos */
+            color: white;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
+            padding: 50px;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
             position: relative;
         }
-        .hidden-message {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .heart {
             position: absolute;
-            color: red;
-            font-size: 20px;
-            animation: float 4s infinite ease-in-out;
+            font-size: 25px;
+            animation: heartAnimation 1s ease-in-out forwards;
         }
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-150px); opacity: 0; }
+
+        @keyframes heartAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+                top: -50px;
+            }
+        }
+
+        .message {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        .message.hidden {
+            display: none;
+        }
+
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <audio id="bg-music" loop>
-        <source src="audio/rewrite-the-stars.mp3" type="audio/mpeg">
+
+    <h1>Para mi amor Jensi, con todo mi cariño tratando de robarte una sonrisa ❤️</h1>
+    <audio id="song" autoplay loop>
+        <source src="https://www.example.com/RewriteTheStars.mp3" type="audio/mp3">
+        Tu navegador no soporta este formato de audio.
     </audio>
-    <div class="card" onclick="showMessage()">
-        💜 Toca para abrir 💜
-        <div class="hidden-message" id="message">
-            "Eres mi estrella favorita en este universo infinito mi Jensi. Gracias por iluminar mi vida con tu sonrisa y el brillo de tus lindos ojos mi amorcito lindo. 💜✨"
-        </div>
+
+    <div class="message" id="message1">
+        <p>Hola, mi amor. Siempre estoy contigo, incluso cuando te sientas triste. 💙</p>
+    </div>
+    <div class="message hidden" id="message2">
+        <p>Recuerda que siempre tienes una razón para sonreír, ¡te quiero mucho! 💛</p>
+    </div>
+    <div class="message hidden" id="message3">
+        <p>No importa lo que pase, siempre estaré aquí para ti. 🌟</p>
     </div>
 
     <script>
-        function showMessage() {
-            document.getElementById("message").style.display = "block";
-            document.getElementById("bg-music").play();
-            createHearts();
-        }
+        let currentMessage = 1;
 
-        function createHearts() {
-            for (let i = 0; i < 10; i++) {
-                let heart = document.createElement("div");
-                heart.classList.add("heart");
-                heart.innerHTML = "❤️";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 4000);
+        // Cambia el mensaje al hacer click
+        document.body.addEventListener('click', function() {
+            // Mostrar corazones
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = `${Math.random() * window.innerWidth}px`;
+            heart.style.top = `${Math.random() * window.innerHeight}px`;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000); // Elimina el corazón después de 1 segundo
+
+            // Cambia el mensaje
+            if (currentMessage === 1) {
+                document.getElementById('message1').classList.add('hidden');
+                document.getElementById('message2').classList.remove('hidden');
+                currentMessage = 2;
+            } else if (currentMessage === 2) {
+                document.getElementById('message2').classList.add('hidden');
+                document.getElementById('message3').classList.remove('hidden');
+                currentMessage = 3;
+            } else {
+                document.getElementById('message3').classList.add('hidden');
+                document.getElementById('message1').classList.remove('hidden');
+                currentMessage = 1;
             }
-        }
+        });
+
+        // Reproduce la canción automáticamente al cargar
+        window.onload = function() {
+            document.getElementById('song').play();
+        };
     </script>
+
 </body>
 </html>
+

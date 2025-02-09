@@ -38,18 +38,19 @@
             position: absolute;
             width: 100%;
             height: 100%;
+            pointer-events: none;
         }
         .flower {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background: url('https://i.imgur.com/jD4J26h.png');
+            width: 40px;
+            height: 40px;
+            background: url('https://i.imgur.com/9ZCAdK2.png');
             background-size: cover;
             animation: fall linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(-100px) rotate(0deg); }
-            100% { transform: translateY(100vh) rotate(360deg); }
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
         .video-container {
             margin-top: 20px;
@@ -58,11 +59,11 @@
 </head>
 <body>
     <div class="flowers"></div>
-    <h1> Mi amada novia Jensi, lamento si de alguna manera siempre causo disgustos en tu persona. 💛</h1>
-    <p>Eres mi paz, mi amor y mi refugio. Nada cambiará cuánto te quiero lo que mas deseo es hacerte muy feliz y hacerte sentir  lo importante que eres para mí. 💖</p>
-    <p>Siempre estaré aquí para ti, pase lo que pase. Tú eres mi hogar, . 🏡💕</p>
+    <h1>Mi amada novia Jensi, lamento si de alguna manera siempre causo disgustos en tu persona. 💛</h1>
+    <p>Eres mi paz, mi amor y mi refugio. Nada cambiará cuánto te quiero. Lo que más deseo es hacerte muy feliz y que sientas lo importante que eres para mí. 💖</p>
+    <p>Siempre estaré aquí para ti, pase lo que pase. Tú eres mi hogar. 🏡💕</p>
     <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/OcyUU8JdN_A?autoplay=1" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8vH9B-7-hr8?autoplay=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <script>
         function createFlowers() {
@@ -70,7 +71,7 @@
                 let flower = document.createElement("div");
                 flower.className = "flower";
                 flower.style.left = Math.random() * 100 + "vw";
-                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                flower.style.animationDuration = (Math.random() * 3 + 4) + "s";
                 document.querySelector(".flowers").appendChild(flower);
             }
         }

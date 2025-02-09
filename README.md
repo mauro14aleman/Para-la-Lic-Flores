@@ -3,81 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti 💜</title>
+    <title>Lo Siento, Mi Amor</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            color: white;
-            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffd700;
+            font-family: 'Pacifico', cursive;
             text-align: center;
-            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             overflow: hidden;
             position: relative;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            margin: auto;
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900;
+            animation: glow 1.5s infinite alternate;
         }
-        .video-container {
-            margin-top: 20px;
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; }
+            100% { text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff6600; }
         }
-        .btn {
-            background: #ff69b4;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background: #ff1493;
-        }
-        .hearts, .flowers {
+        .flowers {
             position: absolute;
-            animation: float 4s infinite ease-in-out;
+            width: 100%;
+            height: 100%;
         }
-        @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(-20px); opacity: 0.7; }
-            100% { transform: translateY(0); opacity: 1; }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://i.imgur.com/jD4J26h.png'); /* Imagen de una flor amarilla */
+            background-size: cover;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        audio {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Para Ti mi hermosa novia💜</h1>
-        <p>Hoy es un día especial, porque tú lo haces especial aunque no te vea a diario . Eres mi felicidad, mi paz y mi amor a diario
-        y un dia podremos ver juntos en la tele la cancion que tanto te encanta, sonrie mi amor eres hermosa. 💖🌸</p>
-        <div class="video-container">
-            <iframe width="400" height="225" src="https://www.youtube.com/embed/3aB41fwBvmA" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-    
+    <div class="flowers"></div>
+    <h1>Lo siento, mi amor. Te amo más que nunca. 💛</h1>
+    <audio autoplay loop>
+        <source src="te-amo-y-mas.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
     <script>
-        function createAnimation(className, emoji) {
-            for (let i = 0; i < 15; i++) {
-                let element = document.createElement('div');
-                element.className = className;
-                element.innerHTML = emoji;
-                element.style.left = Math.random() * 100 + 'vw';
-                element.style.top = Math.random() * 100 + 'vh';
-                element.style.fontSize = Math.random() * 30 + 20 + 'px';
-                element.style.position = 'absolute';
-                document.body.appendChild(element);
-                setInterval(() => {
-                    element.style.top = Math.random() * 100 + 'vh';
-                    element.style.left = Math.random() * 100 + 'vw';
-                }, 3000);
+        function createFlowers() {
+            for (let i = 0; i < 20; i++) {
+                let flower = document.createElement("div");
+                flower.className = "flower";
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.querySelector(".flowers").appendChild(flower);
             }
         }
-        createAnimation('hearts', '💖');
-        createAnimation('flowers', '🌸');
+        createFlowers();
     </script>
 </body>
 </html>

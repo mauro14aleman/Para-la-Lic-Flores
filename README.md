@@ -34,50 +34,56 @@
             0% { text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; }
             100% { text-shadow: 0 0 20px #ffcc00, 0 0 30px #ff6600; }
         }
-        .hearts {
+        .heart-animation {
             position: absolute;
             width: 100%;
             height: 100%;
+            overflow: hidden;
             pointer-events: none;
         }
         .heart {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background: url('https://i.imgur.com/ZbWb9OJ.png'); /* Imagen de corazón */
-            background-size: cover;
-            opacity: 0;
-            animation: pop 3s ease-in-out;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
+            opacity: 0.8;
+            animation: float 3s linear infinite;
         }
-        @keyframes pop {
-            0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-        .video-container {
-            margin-top: 20px;
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hearts"></div>
+    <div class="heart-animation"></div>
     <h1>Mi amada novia Jensi, lamento si de alguna manera siempre causo disgustos en tu persona. 💛</h1>
     <p>Eres mi paz, mi amor y mi refugio. Nada cambiará cuánto te quiero. Lo que más deseo es hacerte muy feliz y que sientas lo importante que eres para mí. 💖</p>
     <p>Siempre estaré aquí para ti, pase lo que pase. Tú eres mi hogar. 🏡💕</p>
     <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/q9ZAnJ5C9xA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/yl3GDni9WCQ?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <script>
         function createHeart() {
             let heart = document.createElement("div");
             heart.className = "heart";
             heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = Math.random() * 100 + "vh";
-            document.querySelector(".hearts").appendChild(heart);
+            heart.style.backgroundColor = ["#ff0000", "#6a0dad", "#4682b4"][Math.floor(Math.random() * 3)];
+            document.querySelector(".heart-animation").appendChild(heart);
             setTimeout(() => heart.remove(), 3000);
         }
-        
-        setInterval(createHeart, 1000);
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
+
         
         document.body.addEventListener("click", createHeart);
     </script>

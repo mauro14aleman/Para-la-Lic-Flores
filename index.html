@@ -20,15 +20,16 @@
 
         .carta {
             background: rgba(240, 224, 200, 0.8);
-            padding: 20px;
+            padding: 15px;
             max-width: 90%;
-            text-align: center;
+            text-align: left; /* Cambiar a alineación izquierda */
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             border-radius: 5px;
-            font-size: 12px;
-            line-height: 1;
+            font-size: 16px; /* Tamaño de fuente ajustado */
+            line-height: 1.5; /* Espaciado de línea ajustado */
             margin: 10px;
+            overflow-y: auto; /* Permite el desplazamiento vertical */
         }
 
         .decoracion {
@@ -42,18 +43,10 @@
         .bottom-right { bottom: 10px; right: 10px; }
 
         .texto {
-            display: inline-block;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid rgba(0,0,0,0.5);
-            animation: escribir 6s steps(60, end) forwards;
-            text-align: left;
-            margin-bottom: 8px; /* Reducir espacio entre párrafos */
-        }
-
-        @keyframes escribir {
-            from { width: 0; }
-            to { width: 100%; }
+            color: black; /* Color de texto negro */
+            font-family: Arial, sans-serif; /* Fuente más legible */
+            margin-bottom: 8px; /* Espacio entre párrafos */
+            word-wrap: break-word; /* Evita que el texto se salga del contenedor */
         }
 
     </style>
@@ -63,12 +56,29 @@
         <div class="decoracion top-left">❤</div>
         <div class="decoracion top-right">❤</div>
         <h1 class="texto">Para Mi Novia Jensi</h1>
-        <p class="texto">Esta es una carta especial solo para ti. Desde el momento en que logré topar contigo  <p class="texto">hubo una conexión que no sé describir, fue como hacer cortocircuito. Estaba en un mal <p class="texto">momento, la verdad, y haberte conocido fue lo mejor que hice en lo poco que tengo de vida. Me <p class="texto">gusta todo de ti, en especial tu sinceridad. Amo que digas lo que piensas y que, sin importar el <p class="texto">lugar, me demuestres que te gusto y que te sientes bien conmigo.</p>
-        <p class="texto">Esa es una de las razones principales por las que soy como soy contigo, porque amo <p class="texto">presumir que eres mi novia, mi mujer, mi señora. Amo tenerte como mi novia y estoy consciente de <p class="texto">que pronto estaremos juntos y ya no estaremos lejos. Te voy a cocinar rico, amar bonito, <p class="texto">complacerte en cada uno de tus deseos y, sobre todo, desnudar no solo tu cuerpo sino tu alma. Sé <p class="texto">conmigo lo que siempre has sido, porque amaré cada parte de ti, aunque desmaquilles tus <p class="texto">sentimientos y seas la niña chiquita que con amor cuidaré, consentiré y amaré por siempre.</p>
+
+        <p class="texto">Esta es una carta especial solo para ti.</p>
+        <p class="texto">Desde el momento en que logré topar contigo hubo una conexión que no sé describir.</p>
+        <p class="texto">Fue como hacer cortocircuito.</p>
+        <p class="texto">Estaba en un mal momento, la verdad, y haberte conocido fue lo mejor que hice en lo poco que tengo de vida.</p>
+        <p class="texto">Me gusta todo de ti, en especial tu sinceridad.</p>
+        <p class="texto">Amo que digas lo que piensas y que, sin importar el lugar, me demuestres que te gusto.</p>
+        <p class="texto">Y que te sientes bien conmigo.</p>
+
+        <p class="texto">Esa es una de las razones principales por las que soy como soy contigo.</p>
+        <p class="texto">Porque amo presumir que eres mi novia, mi mujer, mi señora.</p>
+        <p class="texto">Amo tenerte como mi novia y estoy consciente de que pronto estaremos juntos y ya no estaremos lejos.</p>
+        <p class="texto">Te voy a cocinar rico, amar bonito, complacerte en cada uno de tus deseos.</p>
+        <p class="texto">Y, sobre todo, desnudar no solo tu cuerpo sino tu alma.</p>
+        <p class="texto">Sé conmigo lo que siempre has sido, porque amaré cada parte de ti.</p>
+        <p class="texto">Aunque desmaquilles tus sentimientos y seas la niña chiquita que con amor cuidaré, consentiré y amaré por siempre.</p>
+
         <p class="texto">Siempre serás mi razón de sonreír. ❤️</p>
+
         <div class="decoracion bottom-left">❤</div>
         <div class="decoracion bottom-right">❤</div>
     </div>
 </body>
 </html>
+
 

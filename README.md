@@ -25,10 +25,10 @@
             text-align: center;
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
-            border-radius: 10px;
-            font-size: 18px;
+            border-radius: 5px;
+            font-size: 14px;
             line-height: 1.4;
-            margin: 20px;
+            margin: 15px;
         }
 
         .decoracion {

@@ -26,14 +26,14 @@
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             border-radius: 5px;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 15px;
+            font-size: 12px;
+            line-height: 1;
+            margin: 10px;
         }
 
         .decoracion {
             position: absolute;
-            font-size: 30px;
+            font-size: 20px;
             color: #b8860b;
         }
         .top-left { top: 10px; left: 10px; }
@@ -48,7 +48,7 @@
             border-right: 2px solid rgba(0,0,0,0.5);
             animation: escribir 6s steps(60, end) forwards;
             text-align: left;
-            margin-bottom: 12px; /* Reducir espacio entre párrafos */
+            margin-bottom: 8px; /* Reducir espacio entre párrafos */
         }
 
         @keyframes escribir {

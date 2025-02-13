@@ -12,24 +12,26 @@
             background-size: cover;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            align-items: flex-start; /* Alineación superior para que todo se vea desde el inicio */
+            height: 100%; /* Permite que el contenido ocupe toda la altura */
             margin: 0;
             font-family: 'Great Vibes', cursive;
+            padding: 0 10px; /* Agrega algo de espacio a los lados */
+            overflow-y: auto; /* Permite el desplazamiento vertical */
         }
 
         .carta {
             background: rgba(240, 224, 200, 0.8);
             padding: 15px;
-            max-width: 90%;
-            text-align: left; /* Cambiar a alineación izquierda */
+            max-width: 100%;
+            text-align: left; 
             box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
             position: relative;
             border-radius: 5px;
-            font-size: 16px; /* Tamaño de fuente ajustado */
-            line-height: 1.5; /* Espaciado de línea ajustado */
-            margin: 10px;
-            overflow-y: auto; /* Permite el desplazamiento vertical */
+            font-size: 16px; 
+            line-height: 1.5; 
+            margin: 20px 0; /* Espacio entre la carta y los bordes de la pantalla */
+            overflow-y: auto; /* Permite desplazarse hacia abajo dentro de la carta */
         }
 
         .decoracion {
@@ -43,10 +45,10 @@
         .bottom-right { bottom: 10px; right: 10px; }
 
         .texto {
-            color: black; /* Color de texto negro */
-            font-family: Arial, sans-serif; /* Fuente más legible */
-            margin-bottom: 8px; /* Espacio entre párrafos */
-            word-wrap: break-word; /* Evita que el texto se salga del contenedor */
+            color: black; 
+            font-family: Arial, sans-serif;
+            margin-bottom: 8px; 
+            word-wrap: break-word; 
         }
 
     </style>

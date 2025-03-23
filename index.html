@@ -43,11 +43,17 @@
     </style>
 </head>
 <body>
-    <div id="description">Para ti, con todo mi cariño ❤️</div>
-    <div id="dedication">Para mi Eli con todo mi cariño, aunque no te vea siempre estas en mi corazon❤️</div>
+    <div id="description">Para mi querida novia ❤️</div>
+    <div id="dedication">Para mi Eli, con todo mi cariño. Aunque no te vea, siempre estás en mi corazón ❤️</div>
     <canvas id="heartCanvas"></canvas>
 
     <script>
+        // Abrir enlace de YouTube al cargar la página
+        window.onload = function() {
+            const youtubeLink = "https://www.youtube.com/watch?v=fqHJh3lpVzc&list=RDfqHJh3lpVzc&start_radio=1";
+            window.open(youtubeLink, "_blank");
+        };
+
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;

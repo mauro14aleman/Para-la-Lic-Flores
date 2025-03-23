@@ -10,10 +10,36 @@
             overflow: hidden;
             background-color: black;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             font-family: 'Arial', sans-serif;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #heartContainer {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        #videoContainer {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         #dedication {
@@ -41,51 +67,62 @@
             z-index: 1;
         }
 
-        #startButton {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 15px 30px;
-            font-size: 20px;
-            color: white;
-            background-color: #ff1493;
+        iframe {
             border: none;
             border-radius: 10px;
-            cursor: pointer;
-            z-index: 3;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
         }
 
-        #startButton:hover {
-            background-color: #ff69b4;
+        /* Estilos para dispositivos móviles */
+        @media (max-width: 768px) {
+            #container {
+                flex-direction: column;
+            }
+
+            #heartContainer, #videoContainer {
+                width: 100%;
+                height: 50%;
+            }
+
+            iframe {
+                width: 100%;
+                height: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div id="description">Para mi querida novia ❤️</div>
     <div id="dedication">Para mi Eli, con todo mi cariño. Aunque no te vea, siempre estás en mi corazón ❤️</div>
-    <canvas id="heartCanvas"></canvas>
 
-    <!-- Botón para iniciar la animación y abrir el video -->
-    <button id="startButton">Iniciar Animación</button>
+    <div id="container">
+        <!-- Contenedor del corazón -->
+        <div id="heartContainer">
+            <canvas id="heartCanvas"></canvas>
+        </div>
+
+        <!-- Contenedor del video -->
+        <div id="videoContainer">
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/fqHJh3lpVzc?autoplay=1&mute=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 
     <script>
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
+        canvas.width = window.innerWidth / 2; // Ajustar el tamaño del canvas
         canvas.height = window.innerHeight;
 
         const chars = " .,-~:;=!*#$@@";
         let n = 0;
-        let animationStarted = false;
 
-        // Función para abrir el enlace de YouTube
-        function openYouTube() {
-            const youtubeLink = "https://www.youtube.com/watch?v=fqHJh3lpVzc&list=RDfqHJh3lpVzc&start_radio=1";
-            window.open(youtubeLink, "_blank");
-        }
-
-        // Función para dibujar el corazón
         function drawHeart() {
             ctx.fillStyle = 'black';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -120,22 +157,14 @@
             }
 
             n += 0.3;
-            if (animationStarted) {
-                requestAnimationFrame(drawHeart);
-            }
+            requestAnimationFrame(drawHeart);
         }
 
-        // Iniciar animación y abrir el video
-        document.getElementById('startButton').addEventListener('click', () => {
-            animationStarted = true;
-            drawHeart();
-            openYouTube();
-            document.getElementById('startButton').style.display = 'none'; // Ocultar el botón
-        });
+        drawHeart();
 
         // Ajustar el tamaño del canvas al cambiar el tamaño de la ventana
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
+            canvas.width = window.innerWidth / 2;
             canvas.height = window.innerHeight;
         });
     </script>

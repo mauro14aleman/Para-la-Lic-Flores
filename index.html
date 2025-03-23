@@ -40,6 +40,25 @@
             left: 0;
             z-index: 1;
         }
+
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            background-color: #ff1493;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        #startButton:hover {
+            background-color: #ff69b4;
+        }
     </style>
 </head>
 <body>
@@ -47,13 +66,10 @@
     <div id="dedication">Para mi Eli, con todo mi cariño. Aunque no te vea, siempre estás en mi corazón ❤️</div>
     <canvas id="heartCanvas"></canvas>
 
-    <script>
-        // Abrir enlace de YouTube al cargar la página
-        window.onload = function() {
-            const youtubeLink = "https://www.youtube.com/watch?v=fqHJh3lpVzc&list=RDfqHJh3lpVzc&start_radio=1";
-            window.open(youtubeLink, "_blank");
-        };
+    <!-- Botón para iniciar la animación y abrir el video -->
+    <button id="startButton">Iniciar Animación</button>
 
+    <script>
         const canvas = document.getElementById('heartCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -61,7 +77,15 @@
 
         const chars = " .,-~:;=!*#$@@";
         let n = 0;
+        let animationStarted = false;
 
+        // Función para abrir el enlace de YouTube
+        function openYouTube() {
+            const youtubeLink = "https://www.youtube.com/watch?v=fqHJh3lpVzc&list=RDfqHJh3lpVzc&start_radio=1";
+            window.open(youtubeLink, "_blank");
+        }
+
+        // Función para dibujar el corazón
         function drawHeart() {
             ctx.fillStyle = 'black';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -96,11 +120,20 @@
             }
 
             n += 0.3;
-            requestAnimationFrame(drawHeart);
+            if (animationStarted) {
+                requestAnimationFrame(drawHeart);
+            }
         }
 
-        drawHeart();
+        // Iniciar animación y abrir el video
+        document.getElementById('startButton').addEventListener('click', () => {
+            animationStarted = true;
+            drawHeart();
+            openYouTube();
+            document.getElementById('startButton').style.display = 'none'; // Ocultar el botón
+        });
 
+        // Ajustar el tamaño del canvas al cambiar el tamaño de la ventana
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;

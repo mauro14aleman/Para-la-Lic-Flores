@@ -15,7 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
       padding: 20px;
     }
@@ -58,9 +58,12 @@
     button:hover {
       background-color: #9575cd;
     }
-    iframe {
+    .video-container {
       margin-top: 20px;
+      width: 300px;
+      height: 170px;
       border-radius: 12px;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -99,10 +102,13 @@
       Que tengas una linda noche… tan linda como esa ceja levantada cada que conversamos, jajaj.<br><br>
       <strong>Posdata:</strong> Te dejo este link, con cariño. 💜
     </div>
-    <iframe width="300" height="170" src="https://www.youtube.com/watch?v=wgMc47Xquo0" 
-      title="El centro de mi corazon - Chayanne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
+    <div class="video-container">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/wgMc47Xquo0?autoplay=1" 
+        title="El centro de mi corazon - Chayanne" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
 
   <script>
@@ -110,6 +116,13 @@
       const pantallas = document.querySelectorAll('.pantalla');
       pantallas.forEach(p => p.classList.remove('active'));
       document.getElementById('pantalla' + numero).classList.add('active');
+      
+      // Si es la pantalla 3, reproducir el video automáticamente
+      if(numero === 3) {
+        // Esto forzará el autoplay en algunos navegadores
+        const iframe = document.querySelector('iframe');
+        iframe.src = iframe.src; // Recargar el iframe
+      }
     }
   </script>
 </body>

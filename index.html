@@ -10,7 +10,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e1bee7, #d1c4e9);
       display: flex;
       justify-content: center;
@@ -18,6 +18,7 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
+      color: #4a148c;
     }
     .pantalla {
       display: none;
@@ -25,45 +26,68 @@
       align-items: center;
       max-width: 600px;
       animation: fadeIn 1s ease-in-out;
+      gap: 15px;
     }
     .pantalla.active {
       display: flex;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .frase {
-      font-size: 1.2rem;
-      color: #4a148c;
-      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      padding: 0 15px;
     }
     .gif {
-      width: 250px;
+      width: 200px;
       height: auto;
       border-radius: 12px;
-      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     button {
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 1rem;
       background-color: #7e57c2;
       color: white;
       border: none;
-      border-radius: 12px;
+      border-radius: 25px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
       margin-top: 10px;
+      font-weight: 500;
     }
     button:hover {
       background-color: #9575cd;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .video-container {
-      margin-top: 20px;
-      width: 300px;
-      height: 170px;
+      margin-top: 15px;
+      width: 100%;
+      max-width: 560px;
       border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .titulo {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #5e35b1;
+    }
+    .corazon {
+      color: #e91e63;
+      font-size: 1.5rem;
+      animation: latido 1.5s infinite;
+    }
+    @keyframes latido {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
@@ -71,9 +95,14 @@
 
   <!-- Pantalla 1 -->
   <div class="pantalla active" id="pantalla1">
+    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat saludando">
+    <div class="titulo">Para Ti, Francela <span class="corazon">💜</span></div>
     <div class="frase">
       Eres una gran psicóloga, de esas que inspiran y sanan…<br>
-      Pero hasta las más fuertes necesitan que alguien las abrace con palabras.<br>
+      Pero hasta las más fuertes necesitan que alguien las abrace con palabras.
+    </div>
+    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
+    <div class="frase">
       Y aquí estoy yo, este intento de ingeniero, tratando de sacarte una sonrisota…<br>
       en una noche tan linda como su merced, señorita abogada.
     </div>
@@ -82,33 +111,46 @@
 
   <!-- Pantalla 2 -->
   <div class="pantalla" id="pantalla2">
-    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat">
+    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat feliz">
     <div class="frase">
       Tienes una bonita sonrisa con un brillo muy lindo…<br>
       quizás sea la luz reflejada en los brackets 😄<br>
       Ajajá, bromita.
     </div>
-    <button onclick="mostrarPantalla(3)">Presione acá</button>
+    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
+    <button onclick="mostrarPantalla(3)">Siguiente Mensaje</button>
   </div>
 
   <!-- Pantalla 3 -->
   <div class="pantalla" id="pantalla3">
     <img class="gif" src="https://media.tenor.com/qRY4UsVfPXsAAAAi/mochi-cat-book.gif" alt="Mochi Cat leyendo">
     <div class="frase">
-      Para ti, que amas perderte entre libros y encontrar universos en cada página…<br>
-      Que estudias, trabajas y aun así te mantienes firme, aunque el cansancio pese más que los apuntes.<br>
-      Solo quería recordarte que nunca te rindas…<br>
-      porque acá está el buen Mauro, siempre listo para sacarte una sonrisa.<br><br>
-      Que tengas una linda noche… tan linda como esa ceja levantada cada que conversamos, jajaj.<br><br>
-      <strong>Posdata:</strong> Te dejo este link, con cariño. 💜
+      Para ti, que amas perderte entre libros y encontrar universos en cada página…
     </div>
+    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
+    <div class="frase">
+      Que estudias, trabajas y aun así te mantienes firme, aunque el cansancio pese más que los apuntes.<br>
+      Solo quería recordarte que nunca te rindas…
+    </div>
+    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat feliz">
+    <div class="frase">
+      porque acá está el buen Mauro, siempre listo para sacarte una sonrisa.<br><br>
+      Que tengas una linda noche… tan linda como esa ceja levantada cada que conversamos, jajaj.
+    </div>
+    <div class="frase">
+      <strong>Posdata:</strong> Te dejo esta canción, con cariño. <span class="corazon">💜</span>
+    </div>
+    
+    <!-- Reproductor de YouTube corregido -->
     <div class="video-container">
-      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/wgMc47Xquo0?autoplay=1" 
-        title="El centro de mi corazon - Chayanne" frameborder="0" 
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/wgMc47Xquo0?autoplay=1&rel=0" 
+        title="El centro de mi corazón - Chayanne" frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
       </iframe>
     </div>
+    
+    <button onclick="mostrarPantalla(1)">Volver al inicio</button>
   </div>
 
   <script>
@@ -117,11 +159,18 @@
       pantallas.forEach(p => p.classList.remove('active'));
       document.getElementById('pantalla' + numero).classList.add('active');
       
-      // Si es la pantalla 3, reproducir el video automáticamente
+      // Hacer scroll suave al principio de la pantalla
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Si es la pantalla 3, forzar recarga del iframe para autoplay
       if(numero === 3) {
-        // Esto forzará el autoplay en algunos navegadores
-        const iframe = document.querySelector('iframe');
-        iframe.src = iframe.src; // Recargar el iframe
+        setTimeout(() => {
+          const iframe = document.querySelector('iframe');
+          iframe.src += '&autoplay=1';
+        }, 500);
       }
     }
   </script>

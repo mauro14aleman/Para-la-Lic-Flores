@@ -1,172 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dedicatoria Especial para mi novia ❤️</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-        }
-
-        #container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        #heartContainer {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        #videoContainer {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        #dedication {
-            position: absolute;
-            bottom: 20px;
-            color: white;
-            font-size: 24px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        #description {
-            position: absolute;
-            top: 20px;
-            color: pink;
-            font-size: 18px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        iframe {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
-        }
-
-        /* Estilos para dispositivos móviles */
-        @media (max-width: 768px) {
-            #container {
-                flex-direction: column;
-            }
-
-            #heartContainer, #videoContainer {
-                width: 100%;
-                height: 50%;
-            }
-
-            iframe {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Para Ti, Señorita Psicóloga</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e1bee7, #d1c4e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .pantalla {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .pantalla.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .frase {
+      font-size: 1.2rem;
+      color: #4a148c;
+      margin-bottom: 20px;
+    }
+    .gif {
+      width: 250px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #7e57c2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #9575cd;
+    }
+    iframe {
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-    <div id="description">Para mi querida novia ❤️</div>
-    <div id="dedication">Para mi Eli, con todo mi cariño. Aunque no te vea, siempre estás en mi corazón ❤️</div>
 
-    <div id="container">
-        <!-- Contenedor del corazón -->
-        <div id="heartContainer">
-            <canvas id="heartCanvas"></canvas>
-        </div>
-
-        <!-- Contenedor del video -->
-        <div id="videoContainer">
-            <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/fqHJh3lpVzc?autoplay=1&mute=1"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-        </div>
+  <!-- Pantalla 1 -->
+  <div class="pantalla active" id="pantalla1">
+    <div class="frase">
+      Eres una gran psicóloga, de esas que inspiran y sanan…<br>
+      Pero hasta las más fuertes necesitan que alguien las abrace con palabras.<br>
+      Y aquí estoy yo, este intento de ingeniero, tratando de sacarte una sonrisota…<br>
+      en una noche tan linda como su merced, señorita abogada.
     </div>
+    <button onclick="mostrarPantalla(2)">Presiona para sonreír</button>
+  </div>
 
-    <script>
-        const canvas = document.getElementById('heartCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth / 2; // Ajustar el tamaño del canvas
-        canvas.height = window.innerHeight;
+  <!-- Pantalla 2 -->
+  <div class="pantalla" id="pantalla2">
+    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat">
+    <div class="frase">
+      Tienes una bonita sonrisa con un brillo muy lindo…<br>
+      quizás sea la luz reflejada en los brackets 😄<br>
+      Ajajá, bromita.
+    </div>
+    <button onclick="mostrarPantalla(3)">Presione acá</button>
+  </div>
 
-        const chars = " .,-~:;=!*#$@@";
-        let n = 0;
+  <!-- Pantalla 3 -->
+  <div class="pantalla" id="pantalla3">
+    <img class="gif" src="https://media.tenor.com/qRY4UsVfPXsAAAAi/mochi-cat-book.gif" alt="Mochi Cat leyendo">
+    <div class="frase">
+      Para ti, que amas perderte entre libros y encontrar universos en cada página…<br>
+      Que estudias, trabajas y aun así te mantienes firme, aunque el cansancio pese más que los apuntes.<br>
+      Solo quería recordarte que nunca te rindas…<br>
+      porque acá está el buen Mauro, siempre listo para sacarte una sonrisa.<br><br>
+      Que tengas una linda noche… tan linda como esa ceja levantada cada que conversamos, jajaj.<br><br>
+      <strong>Posdata:</strong> Te dejo este link, con cariño. 💜
+    </div>
+    <iframe width="300" height="170" src="https://www.youtube.com/embed/wUdBwL54iho" 
+      title="Atado a tu Amor - Chayanne" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
 
-        function drawHeart() {
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const c = Math.cos(n);
-            const s = Math.sin(n);
-            const maxZ = 1.5;
-
-            for (let y = -0.5; y <= 0.5; y += 0.01) {
-                const r = 0.4 + 0.04 * Math.pow(0.4 + 0.4 * Math.sin(n * 6 + y * 2), 8);
-                for (let x = -0.5; x <= 0.5; x += 0.01) {
-                    let z = -x * x - Math.pow(1.2 * y - Math.abs(x) * (2 / 3), 2) + r * r;
-                    if (z > 0) {
-                        z = Math.sqrt(z) / (2 - y);
-                        for (let z2 = -z; z2 < z; z2 += z / 6) {
-                            const ax = x * c - z2 * s;
-                            const az = x * s + z2 * c;
-                            const p = 1 + az / 2;
-
-                            const px = Math.round((ax * p + 0.5) * 30);
-                            const py = Math.round((-y * p + 0.5) * 30);
-
-                            const pos = px + 30 * py;
-                            const idx = Math.floor((az / maxZ) * (chars.length - 1));
-                            const color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-
-                            ctx.fillStyle = color;
-                            ctx.fillText(chars[idx], px * 10 + canvas.width / 2 - 150, py * 10 + canvas.height / 2 - 150);
-                        }
-                    }
-                }
-            }
-
-            n += 0.3;
-            requestAnimationFrame(drawHeart);
-        }
-
-        drawHeart();
-
-        // Ajustar el tamaño del canvas al cambiar el tamaño de la ventana
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth / 2;
-            canvas.height = window.innerHeight;
-        });
-    </script>
+  <script>
+    function mostrarPantalla(numero) {
+      const pantallas = document.querySelectorAll('.pantalla');
+      pantallas.forEach(p => p.classList.remove('active'));
+      document.getElementById('pantalla' + numero).classList.add('active');
+    }
+  </script>
 </body>
 </html>

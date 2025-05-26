@@ -71,14 +71,22 @@
     #card.open #catGif{display:block;}
 
     #yt-container{
-      margin-top:16px;
+      margin-top:20px;
+      display:none;
+      animation:highlight 2s ease-in-out infinite alternate;
     }
+    #card.open #yt-container{display:block;}
+
     iframe{
-      width:100%;
-      height:180px;
       border-radius:12px;
       box-shadow:0 4px 12px rgba(0,0,0,0.25);
-      border:none;
+      width:100%;
+      height:215px;
+    }
+
+    @keyframes highlight {
+      0% { box-shadow: 0 0 10px #d97a5b; }
+      100% { box-shadow: 0 0 20px #b55a3c; }
     }
 
     .book{
@@ -113,7 +121,7 @@
       </p>
       <img id="catGif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Gatito bailando" />
       <div id="yt-container">
-        <iframe src="https://www.youtube.com/embed/uF2HpvtoK6M?rel=0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <iframe src="https://www.youtube.com/embed/UhoUoB8Mt6Y" title="YouTube video" allowfullscreen></iframe>
       </div>
     </div>
   </div>

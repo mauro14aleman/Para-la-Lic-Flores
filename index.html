@@ -8,9 +8,9 @@
   <!--  ------  PALETA Y ESTILO  ------ -->
   <style>
     :root{
-      --bg-start:#FFF2E0;   /* tono cálido claro */
-      --bg-end:#F9C57D;     /* tono cálido brillante */
-      --accent:#D97A5B;     /* naranja–terracota suave */
+      --bg-start:#FFF2E0;
+      --bg-end:#F9C57D;
+      --accent:#D97A5B;
       --accent-dark:#B55A3C;
       --text:#4a342e;
     }
@@ -23,14 +23,12 @@
       overflow:hidden;color:var(--text);
     }
 
-    /* Contenedor principal  */
     #container{
       position:relative;
       width:100%;height:100%;
       display:flex;align-items:center;justify-content:center;
     }
 
-    /* ---- Caja de regalo ---- */
     #gift{
       width:180px;height:180px;
       position:relative;cursor:pointer;
@@ -54,12 +52,11 @@
       box-shadow:0 4px 8px rgba(0,0,0,.2);
     }
 
-    /* ---- Tarjeta emergente ---- */
     #card{
       position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
       width:92%;max-width:420px;
       background:rgba(255,255,255,.92);
-      padding:28px 24px;
+      padding:28px 24px 16px;
       border-radius:18px;
       box-shadow:0 8px 20px rgba(0,0,0,.25);
       text-align:center;
@@ -69,14 +66,20 @@
     h2{font-size:1.8rem;margin-bottom:8px;}
     p{font-size:1.05rem;line-height:1.45;white-space:pre-line;}
 
-    /* Gif de gatito */
     #catGif{
       width:120px;border-radius:12px;margin-top:20px;display:none;
       box-shadow:0 4px 10px rgba(0,0,0,.2);
     }
     #card.open #catGif{display:block;}
 
-    /* ---- Confeti de libros ---- */
+    #yt-container{
+      margin-top:16px;
+    }
+    iframe{
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    }
+
     .book{
       position:absolute;
       opacity:.85;
@@ -93,13 +96,11 @@
 </head>
 <body>
   <div id="container">
-    <!-- Caja de regalo -->
     <div id="gift" title="Lic.Flores favor toque aca para abrir su regalo 🎁">
       <div id="lid"></div>
       <div id="box"></div>
     </div>
 
-    <!-- Tarjeta -->
     <div id="card">
       <h2>¡Hola!</h2>
       <p>
@@ -110,44 +111,40 @@
         See you, kisses 💋💛
       </p>
       <img id="catGif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Gatito bailando" />
+      <div id="yt-container">
+        <div id="yt"></div>
+      </div>
     </div>
   </div>
 
-  <!-- Confeti de libros (se añaden con JS) -->
-
-  <!-- Música: YouTube IFrame API (A dónde vamos – Morat) -->
-  <div id="yt" style="display:none;"></div>
   <script>
-    /* ----------- CONFETI LIBROS ----------- */
     const icons=["📚","📖","📘","📙","📕","📔"];
     for(let i=0;i<30;i++){
       const span=document.createElement('span');
       span.className='book';
       span.textContent=icons[Math.floor(Math.random()*icons.length)];
       span.style.left=(Math.random()*100)+"%";
-      span.style.top=(Math.random()*20+80)+"%"; // empieza abajo
+      span.style.top=(Math.random()*20+80)+"%";
       span.style.fontSize=(1+Math.random()*1.8)+"rem";
       span.style.animationDelay=(Math.random()*5)+"s";
       document.body.appendChild(span);
     }
 
-    /* ----------- YOUTUBE PLAYER ----------- */
-    let playerReady = false;
+    let playerReady=false;
     let player;
     function onYouTubeIframeAPIReady(){
       player=new YT.Player('yt',{
-        videoId:'z8AZt9yij6s', // ID oficial "A dónde vamos" - Morat
+        width:'100%',
+        height:'100',
+        videoId:'z8AZt9yij6s',
         playerVars:{ 'autoplay':0,'controls':0,'playsinline':1,'start':0 },
-        events:{
-          'onReady':()=>{ playerReady = true; }
-        }
+        events:{ 'onReady':()=>{ playerReady=true; } }
       });
     }
     const tag=document.createElement('script');
     tag.src="https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
-    /* ----------- INTERACCIÓN CAJA ----------- */
     const gift=document.getElementById('gift');
     const lid=document.getElementById('lid');
     const card=document.getElementById('card');
@@ -158,8 +155,9 @@
       lid.style.transform='translateY(-120%) rotate(-25deg)';
       setTimeout(()=>{ gift.style.opacity='0'; }, 450);
       setTimeout(()=>{ card.classList.add('open'); }, 650);
-      setTimeout(()=>{ if(playerReady && player && typeof player.playVideo === 'function') player.playVideo(); }, 900);
+      setTimeout(()=>{ if(playerReady && player && typeof player.playVideo==='function') player.playVideo(); }, 1000);
     });
   </script>
 </body>
 </html>
+

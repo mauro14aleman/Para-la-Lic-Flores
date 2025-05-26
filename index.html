@@ -2,177 +2,164 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Ti, Señorita Francela</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un pequeño regalo para ti</title>
+  
+  <!--  ------  PALETA Y ESTILO  ------ -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg-start:#FFF2E0;   /* tono cálido claro */
+      --bg-end:#F9C57D;     /* tono cálido brillante */
+      --accent:#D97A5B;     /* naranja–terracota suave */
+      --accent-dark:#B55A3C;
+      --text:#4a342e;
     }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e1bee7, #d1c4e9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-      color: #4a148c;
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body,html{
+      height:100%;width:100%;
+      font-family:'Segoe UI',system-ui,Arial,Helvetica,sans-serif;
+      background:linear-gradient(135deg,var(--bg-start),var(--bg-end));
+      overflow:hidden;color:var(--text);
     }
-    .pantalla {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      max-width: 600px;
-      animation: fadeIn 1s ease-in-out;
-      gap: 15px;
+
+    /* Contenedor principal  */
+    #container{
+      position:relative;
+      width:100%;height:100%;
+      display:flex;align-items:center;justify-content:center;
     }
-    .pantalla.active {
-      display: flex;
+
+    /* ---- Caja de regalo ---- */
+    #gift{
+      width:180px;height:180px;
+      position:relative;cursor:pointer;
+      transition:transform .4s ease, opacity .4s ease;
+      z-index:10;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    #gift:hover{transform:scale(1.05)}
+    #box{
+      width:100%;height:100%;
+      background:var(--accent);
+      border-radius:12px;
+      position:relative;
+      box-shadow:0 6px 12px rgba(0,0,0,.25);
     }
-    .frase {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      padding: 0 15px;
+    #lid{
+      width:110%;height:35%;
+      background:var(--accent-dark);
+      border-radius:12px;
+      position:absolute;top:-15%;left:-5%;
+      transition:transform .6s ease;
+      box-shadow:0 4px 8px rgba(0,0,0,.2);
     }
-    .gif {
-      width: 200px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    /* ---- Tarjeta emergente ---- */
+    #card{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);
+      width:92%;max-width:420px;
+      background:rgba(255,255,255,.92);
+      padding:28px 24px;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,.25);
+      text-align:center;
+      transition:transform .6s ease;
     }
-    button {
-      padding: 12px 25px;
-      font-size: 1rem;
-      background-color: #7e57c2;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-      font-weight: 500;
+    #card.open{transform:translate(-50%,-50%) scale(1);}
+    h2{font-size:1.8rem;margin-bottom:8px;}
+    p{font-size:1.05rem;line-height:1.45;white-space:pre-line;}
+
+    /* Gif de gatito */
+    #catGif{
+      width:120px;border-radius:12px;margin-top:20px;display:none;
+      box-shadow:0 4px 10px rgba(0,0,0,.2);
     }
-    button:hover {
-      background-color: #9575cd;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    #card.open #catGif{display:block;}
+
+    /* ---- Confeti de libros ---- */
+    .book{
+      position:absolute;
+      opacity:.85;
+      color:#ffffff;
+      animation:float 7s linear infinite;
+      user-select:none;pointer-events:none;
+      text-shadow:0 2px 6px rgba(0,0,0,.4);
     }
-    .video-container {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 560px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .titulo {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      font-weight: 600;
-      color: #5e35b1;
-    }
-    .corazon {
-      color: #e91e63;
-      font-size: 1.5rem;
-      animation: latido 1.5s infinite;
-    }
-    @keyframes latido {
-      0% { transform: scale(1); }
-      25% { transform: scale(1.1); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    @keyframes float{
+      0%{transform:translateY(0) rotate(0deg);opacity:.85}
+      100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
     }
   </style>
 </head>
 <body>
+  <div id="container">
+    <!-- Caja de regalo -->
+    <div id="gift" title="Lic.Flores favor toque aca para abrir su regalo 🎁">
+      <div id="lid"></div>
+      <div id="box"></div>
+    </div>
 
-  <!-- Pantalla 1 -->
-  <div class="pantalla active" id="pantalla1">
-    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat saludando">
-    <div class="titulo">Para Ti, Francela <span class="corazon">💜</span></div>
-    <div class="frase">
-      Eres una gran psicóloga, de esas que inspiran y sanan…<br>
-      Pero hasta las más fuertes necesitan que alguien las abrace con palabras.
+    <!-- Tarjeta -->
+    <div id="card">
+      <h2>¡Hola!</h2>
+      <p>
+        No olvides sonreír, tienes una sonrisa muy bonita… más cuando me cuentas lo mal que te caen los negros 😄.
+        Descansa mucho y trata de dormir bien, que todavía me debes una salida por un cafecito ☕ y muchas charlas.
+
+        Linda noche, espero lograr sacarte una sonrisa hoy.
+        See you, kisses 💋💛
+      </p>
+      <img id="catGif" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Gatito bailando" />
     </div>
-    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
-    <div class="frase">
-      Y aquí estoy yo, este intento de ingeniero, tratando de sacarte una sonrisota…<br>
-      en una noche tan linda como su merced, señorita abogada.
-    </div>
-    <button onclick="mostrarPantalla(2)">Presiona para sonreír</button>
   </div>
 
-  <!-- Pantalla 2 -->
-  <div class="pantalla" id="pantalla2">
-    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat feliz">
-    <div class="frase">
-      Tienes una bonita sonrisa con un brillo muy lindo…<br>
-      quizás sea la luz reflejada en los brackets 😄<br>
-      Ajajá, bromita.
-    </div>
-    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
-    <button onclick="mostrarPantalla(3)">Siguiente Mensaje</button>
-  </div>
+  <!-- Confeti de libros (se añaden con JS) -->
 
-  <!-- Pantalla 3 -->
-  <div class="pantalla" id="pantalla3">
-    <img class="gif" src="https://media.tenor.com/qRY4UsVfPXsAAAAi/mochi-cat-book.gif" alt="Mochi Cat leyendo">
-    <div class="frase">
-      Para ti, que amas perderte entre libros y encontrar universos en cada página…
-    </div>
-    <img class="gif" src="https://media.tenor.com/9Fy3CN65rxQAAAAi/mochi-cat-love.gif" alt="Mochi Cat amor">
-    <div class="frase">
-      Que estudias, trabajas y aun así te mantienes firme, aunque el cansancio pese más que los apuntes.<br>
-      Solo quería recordarte que nunca te rindas…
-    </div>
-    <img class="gif" src="https://media.tenor.com/1UoL-HbGqE0AAAAi/mochi-mochi-peach-cat.gif" alt="Mochi Cat feliz">
-    <div class="frase">
-      porque acá está el buen Mauro, siempre listo para sacarte una sonrisa.<br><br>
-      Que tengas una linda noche… tan linda como esa ceja levantada cada que conversamos, jajaj.
-    </div>
-    <div class="frase">
-      <strong>Posdata:</strong> Te dejo esta canción, con cariño. <span class="corazon">💜</span>
-    </div>
-    
-    <!-- Reproductor de YouTube corregido -->
-    <div class="video-container">
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/wgMc47Xquo0?autoplay=1&rel=0" 
-        title="El centro de mi corazón - Chayanne" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-    
-    <button onclick="mostrarPantalla(1)">Volver al inicio</button>
-  </div>
-
+  <!-- Música: YouTube IFrame API (A dónde vamos – Morat) -->
+  <div id="yt" style="display:none;"></div>
   <script>
-    function mostrarPantalla(numero) {
-      const pantallas = document.querySelectorAll('.pantalla');
-      pantallas.forEach(p => p.classList.remove('active'));
-      document.getElementById('pantalla' + numero).classList.add('active');
-      
-      // Hacer scroll suave al principio de la pantalla
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      
-      // Si es la pantalla 3, forzar recarga del iframe para autoplay
-      if(numero === 3) {
-        setTimeout(() => {
-          const iframe = document.querySelector('iframe');
-          iframe.src += '&autoplay=1';
-        }, 500);
-      }
+    /* ----------- CONFETI LIBROS ----------- */
+    const icons=["📚","📖","📘","📙","📕","📔"];
+    for(let i=0;i<30;i++){
+      const span=document.createElement('span');
+      span.className='book';
+      span.textContent=icons[Math.floor(Math.random()*icons.length)];
+      span.style.left=(Math.random()*100)+"%";
+      span.style.top=(Math.random()*20+80)+"%"; // empieza abajo
+      span.style.fontSize=(1+Math.random()*1.8)+"rem";
+      span.style.animationDelay=(Math.random()*5)+"s";
+      document.body.appendChild(span);
     }
+
+    /* ----------- YOUTUBE PLAYER ----------- */
+    let playerReady = false;
+    let player;
+    function onYouTubeIframeAPIReady(){
+      player=new YT.Player('yt',{
+        videoId:'z8AZt9yij6s', // ID oficial "A dónde vamos" - Morat
+        playerVars:{ 'autoplay':0,'controls':0,'playsinline':1,'start':0 },
+        events:{
+          'onReady':()=>{ playerReady = true; }
+        }
+      });
+    }
+    const tag=document.createElement('script');
+    tag.src="https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
+    /* ----------- INTERACCIÓN CAJA ----------- */
+    const gift=document.getElementById('gift');
+    const lid=document.getElementById('lid');
+    const card=document.getElementById('card');
+    let opened=false;
+    gift.addEventListener('click',()=>{
+      if(opened) return;
+      opened=true;
+      lid.style.transform='translateY(-120%) rotate(-25deg)';
+      setTimeout(()=>{ gift.style.opacity='0'; }, 450);
+      setTimeout(()=>{ card.classList.add('open'); }, 650);
+      setTimeout(()=>{ if(playerReady && player && typeof player.playVideo === 'function') player.playVideo(); }, 900);
+    });
   </script>
 </body>
 </html>
